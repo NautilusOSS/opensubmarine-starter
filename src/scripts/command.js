@@ -14,18 +14,22 @@ export const sks = {
     deployer: sk,
 };
 // DEVNET
-// const ALGO_SERVER = "https://localhost:4001";
-// const ALGO_INDEXER_SERVER = "https://localhost:8980";
+const ALGO_SERVER = "http://localhost";
+const ALGO_PORT = 4001;
+const ALGO_INDEXER_SERVER = "http://localhost";
+const ALGO_INDEXER_PORT = 8980;
 // TESTNET
-const ALGO_SERVER = "https://testnet-api.voi.nodely.dev";
-const ALGO_INDEXER_SERVER = "https://testnet-idx.voi.nodely.dev";
+// const ALGO_SERVER = "https://testnet-api.voi.nodely.dev";
+// const ALGO_INDEXER_SERVER = "https://testnet-idx.voi.nodely.dev";
 // MAINNET
 // const ALGO_SERVER = "https://mainnet-api.voi.nodely.dev";
 // const ALGO_INDEXER_SERVER = "https://mainnet-idx.voi.nodely.dev";
 const algodServerURL = process.env.ALGOD_SERVER || ALGO_SERVER;
-export const algodClient = new algosdk.Algodv2(process.env.ALGOD_TOKEN || "", algodServerURL, process.env.ALGOD_PORT || "");
+const algodServerPort = process.env.ALGOD_PORT || ALGO_PORT;
+export const algodClient = new algosdk.Algodv2(process.env.ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", algodServerURL, algodServerPort);
 const indexerServerURL = process.env.INDEXER_SERVER || ALGO_INDEXER_SERVER;
-export const indexerClient = new algosdk.Indexer(process.env.INDEXER_TOKEN || "", indexerServerURL, process.env.INDEXER_PORT || "");
+const indexerServerPort = process.env.INDEXER_PORT || ALGO_INDEXER_PORT;
+export const indexerClient = new algosdk.Indexer(process.env.INDEXER_TOKEN || "", indexerServerURL, indexerServerPort);
 export const deploy = async (options) => {
     if (options.debug) {
         console.log(options);

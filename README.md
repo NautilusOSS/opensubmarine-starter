@@ -31,7 +31,7 @@ It's a matter of updating the deploy options as outlined in the [Deployment](#de
 Update `command.ts` to match contract name(s). This file is a helper to deploy your compiled contracts to the network set in the file itself.
 
 1. Set your mnemonic in the `acc` variable.
-2. Import starting on line 2.
+2. Update the import statement starting on line 2 for your contract.
 3. DeployType to match your contract name(s).
   - E.g. type DeployType = "HelloWorld";
   - E.g. type DeployType = "HelloWorld" | "OtherContract" | "AnotherContract";
