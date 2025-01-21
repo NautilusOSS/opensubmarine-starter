@@ -7,6 +7,8 @@ from algopy import (
 )
 from opensubmarine import Ownable
 
+# See implementation of Ownable:
+# https://github.com/Open-Submarine/opensubmarine-contracts/blob/main/src/opensubmarine/contracts/access/Ownable/contract.py
 
 class HelloWorld(Ownable):
     """
