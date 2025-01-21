@@ -1,5 +1,4 @@
 from algopy import (
-    Account,
     Global,
     String,
     arc4,
