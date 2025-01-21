@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2450e4a564599e9fec5b69a3ad59353ae48e6c01421e480f8479b7e1b09707e6"
+            "sha256": "7383d5bce9e93851a9e54bbb200cb1c3d89df1046511df5d45d9c8e604e6cb3e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1045,12 +1045,12 @@
         },
         "opensubmarine": {
             "hashes": [
-                "sha256:81ac58802f06d42059b5793c1f12268b5e0f944374655484a3b7cdaf3b6d782a",
-                "sha256:fb2344db32071167591c3ff27697b367ae0e62664977fdf23fe4a799ebcf3069"
+                "sha256:85309ffe4dd16dce339a66dd533ae1224b1c7d75be378b02bfde6cab2365d11d",
+                "sha256:c725a365c7eff979621968cfe63b90e8adb6abf4c659717b4e5a5241cee79a5b"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==0.1.7"
+            "version": "==0.1.12"
         },
         "packaging": {
             "hashes": [
