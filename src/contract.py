@@ -9,6 +9,7 @@ from opensubmarine import Ownable
 
 # See implementation of Ownable:
 # https://github.com/Open-Submarine/opensubmarine-contracts/blob/main/src/opensubmarine/contracts/access/Ownable/contract.py
+# Ownable class methods and subroutines are available to HelloWorld and by be overridden in HelloWorld
 
 class HelloWorld(Ownable):
     """
@@ -40,10 +41,3 @@ class HelloWorld(Ownable):
             return you
         else:
             return you + ", " + self.repeat(you, depth - 1)
-
-    # Ownable implements transfer method to transfer ownership
-    # We can override it to add additional logic
-    # For example, we can make it so that ownership is non-transferable
-    @arc4.abimethod
-    def transfer(self, new_owner: arc4.Address) -> None:
-        pass
