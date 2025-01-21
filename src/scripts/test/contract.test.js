@@ -26,4 +26,15 @@ describe("Hello World Testing", function () {
     expect(Buffer.from(result.return).toString("utf-8")).to.equal("Hello, World!");
   });
 
+  it("Should return Hello, You!", async function () {
+    const result = await contract.helloYou({ you: "You!" });
+    expect(Buffer.from(result.return).toString("utf-8")).to.equal("Hello, You!");
+  })
+
+  it("Should return Hello, You Again!", async function () {
+    const result = await contract.helloYouAgain({ you: "You!", depth: 3 });
+    expect(Buffer.from(result.return).toString("utf-8")).to.equal("Hello, You!, You!, You!");
+  })
+
+
 })
