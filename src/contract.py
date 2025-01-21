@@ -20,9 +20,6 @@ class HelloWorld(Ownable):
         # ownable state
         # Ownable has owner state which we must initialize
         self.owner = Global.creator_address  # set owner to creator
-        # stakeable state
-        self.delegate = Account()  # zero address
-        self.stakeable = bool(1)  # 1 (Default unlocked)
 
     @arc4.abimethod
     def hello_world(self) -> String:
