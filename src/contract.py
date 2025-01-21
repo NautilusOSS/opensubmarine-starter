@@ -2,10 +2,11 @@ from algopy import (
     Global,
     String,
     arc4,
+    subroutine,
+    UInt64,
+    urange
 )
-
 from opensubmarine import Ownable
-
 
 class HelloWorld(Ownable):
     """
@@ -22,6 +23,23 @@ class HelloWorld(Ownable):
     def hello_world(self) -> String:
         return String("Hello, World!")
 
+    @arc4.abimethod
+    def hello_you(self, you: String) -> String:
+        return "Hello, " + you
+
+    @arc4.abimethod    
+    def hello_you_again(self, you: String, depth: UInt64) -> String:
+        return "Hello, " + self.repeat(you, depth)
+
+    @subroutine
+    def repeat(self, you: String, depth: UInt64) -> String:
+        if depth == 0:
+            return String("") 
+        elif depth == 1:
+            return you
+        else:
+            return you + ", " + self.repeat(you, depth - 1)
+         
     # Ownable implements transfer method to transfer ownership
     # We can override it to add additional logic
     # For example, we can make it so that ownership is non-transferable

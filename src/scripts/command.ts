@@ -11,7 +11,7 @@ export const program = new Command();
 
 const { MN } = process.env;
 
-export const acc = algosdk.mnemonicToSecretKey(MN || "excess kid equal rather dish party execute decorate pull film nerve tired scrap inner teach resource oval display ripple plastic burden miss awkward ability suspect");
+export const acc = algosdk.mnemonicToSecretKey(MN || "");
 export const { addr, sk } = acc;
 
 export const addressses = {
@@ -23,29 +23,33 @@ export const sks = {
 };
 
 // DEVNET
-// const ALGO_SERVER = "https://localhost:4001";
-// const ALGO_INDEXER_SERVER = "https://localhost:8980";
+const ALGO_SERVER = "http://localhost";
+const ALGO_PORT = 4001;
+const ALGO_INDEXER_SERVER = "http://localhost";
+const ALGO_INDEXER_PORT = 8980;
 
 // TESTNET
-const ALGO_SERVER = "https://testnet-api.voi.nodely.dev";
-const ALGO_INDEXER_SERVER = "https://testnet-idx.voi.nodely.dev";
+// const ALGO_SERVER = "https://testnet-api.voi.nodely.dev";
+// const ALGO_INDEXER_SERVER = "https://testnet-idx.voi.nodely.dev";
 
 // MAINNET
 // const ALGO_SERVER = "https://mainnet-api.voi.nodely.dev";
 // const ALGO_INDEXER_SERVER = "https://mainnet-idx.voi.nodely.dev";
 
 const algodServerURL = process.env.ALGOD_SERVER || ALGO_SERVER;
+const algodServerPort = process.env.ALGOD_PORT || ALGO_PORT;
 export const algodClient = new algosdk.Algodv2(
-  process.env.ALGOD_TOKEN || "",
+  process.env.ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   algodServerURL,
-  process.env.ALGOD_PORT || ""
+  algodServerPort
 );
 
 const indexerServerURL = process.env.INDEXER_SERVER || ALGO_INDEXER_SERVER;
+const indexerServerPort = process.env.INDEXER_PORT || ALGO_INDEXER_PORT;
 export const indexerClient = new algosdk.Indexer(
   process.env.INDEXER_TOKEN || "",
   indexerServerURL,
-  process.env.INDEXER_PORT || ""
+  indexerServerPort
 );
 
 type DeployType = "HelloWorld";
