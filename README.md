@@ -3,9 +3,9 @@
 This is a lightweight repo to get started with building AVM smart contracts, testing them and deploying them.
 
 Ensure you have the following installed:
-    - [node](https://nodejs.org/en/download/)
-    - [algokit](https://developer.algorand.org/docs/get-started/algokit/)
-      - Algokit will have prerequestites that need to be installed too.
+  - [node](https://nodejs.org/en/download/)
+  - [algokit](https://developer.algorand.org/docs/get-started/algokit/)
+    - Algokit will have prerequestites that need to be installed too.
 
 # Development
 
