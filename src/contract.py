@@ -1,14 +1,18 @@
 from algopy import (
+    Account,
     Global,
     String,
     arc4,
     subroutine,
     UInt64,
 )
-from opensubmarine import Ownable
+from opensubmarine import Stakeable
+
+# See implementation of Stakeable:
+# https://github.com/Open-Submarine/opensubmarine-contracts/blob/main/src/opensubmarine/contracts/participation/Stakable/contract.py
 
 
-class HelloWorld(Ownable):
+class HelloWorld(Stakeable):
     """
     A simple Hello World smart contract that inherits from Ownable.
     """
@@ -16,7 +20,12 @@ class HelloWorld(Ownable):
     def __init__(self) -> None:
         # ownable state
         # Ownable has owner state which we must initialize
+        # Note that Stakeable inherits from Ownable
         self.owner = Global.creator_address  # set owner to creator
+        # stakeable state
+        # Stakeable has delegate state which we must initialize
+        self.delegate = Account()  # zero address
+        self.stakeable = bool(1)  # 1 (Default unlocked)
 
     @arc4.abimethod
     def hello_world(self) -> String:
@@ -38,10 +47,3 @@ class HelloWorld(Ownable):
             return you
         else:
             return you + ", " + self.repeat(you, depth - 1)
-
-    # Ownable implements transfer method to transfer ownership
-    # We can override it to add additional logic
-    # For example, we can make it so that ownership is non-transferable
-    @arc4.abimethod
-    def transfer(self, new_owner: arc4.Address) -> None:
-        pass
