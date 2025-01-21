@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y jq
 
 # Using --deploy --ignore-pipfile to ensure that lockfile dependencies matches declared dependencies. Install only from lockfile.
 RUN python3 -m pip install --user pipenv && \
-    /root/.local/bin/pipenv install --deploy --ignore-pipfile --system
+    /root/.local/bin/pipenv install --deploy --ignore-pipfile --system 
 
 RUN mkdir -p /artifacts
 

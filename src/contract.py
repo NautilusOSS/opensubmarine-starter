@@ -1,20 +1,27 @@
 from algopy import (
-    ARC4Contract,
-    arc4,
+    Global,
     String,
+    arc4,
     subroutine,
     UInt64,
     urange
 )
+from opensubmarine import Ownable
 
-class HelloWorld(ARC4Contract):
+class HelloWorld(Ownable):
+    """
+    A simple Hello World smart contract that inherits from Ownable.
+    """
+
     def __init__(self) -> None:
-        pass
+        # ownable state
+        # Ownable has owner state which we must initialize
+        self.owner = Global.creator_address  # set owner to creator
+
 
     @arc4.abimethod
     def hello_world(self) -> String:
         return String("Hello, World!")
-
 
     @arc4.abimethod
     def hello_you(self, you: String) -> String:
@@ -32,3 +39,10 @@ class HelloWorld(ARC4Contract):
             return you
         else:
             return you + ", " + self.repeat(you, depth - 1)
+         
+    # Ownable implements transfer method to transfer ownership
+    # We can override it to add additional logic
+    # For example, we can make it so that ownership is non-transferable
+    @arc4.abimethod
+    def transfer(self, new_owner: arc4.Address) -> None:
+        pass
