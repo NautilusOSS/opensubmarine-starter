@@ -4,22 +4,25 @@ from algopy import (
     arc4,
     subroutine,
     UInt64,
+    BigUInt,
+    Txn,
 )
-from opensubmarine import Ownable
+from opensubmarine import ARC200Token, arc200_Transfer
+from opensubmarine.utils.algorand import require_payment
+from opensubmarine.utils.types import Bytes32, Bytes8
 
-# See implementation of Ownable:
-# https://github.com/Open-Submarine/opensubmarine-contracts/blob/main/src/opensubmarine/contracts/access/Ownable/contract.py
-# Ownable class methods and subroutines are available to HelloWorld and by be overridden in HelloWorld
 
-class HelloWorld(Ownable):
+class HelloWorld(ARC200Token):
     """
     A simple Hello World smart contract that inherits from Ownable.
     """
 
     def __init__(self) -> None:
-        # ownable state
-        # Ownable has owner state which we must initialize
-        self.owner = Global.creator_address  # set owner to creator
+        # arc200 state
+        self.name = String()
+        self.symbol = String()
+        self.decimals = UInt64()
+        self.totalSupply = BigUInt()
 
     @arc4.abimethod
     def hello_world(self) -> String:
@@ -41,3 +44,35 @@ class HelloWorld(Ownable):
             return you
         else:
             return you + ", " + self.repeat(you, depth - 1)
+
+    @arc4.abimethod
+    def mint(
+        self,
+        receiver: arc4.Address,
+        name: Bytes32,
+        symbol: Bytes8,
+        decimals: arc4.UInt8,
+        totalSupply: arc4.UInt256,
+    ) -> None:
+        """
+        Mint tokens
+        """
+        assert Txn.sender == Global.creator_address, "must be creator"
+        assert self.name == "", "name not initialized"
+        assert self.symbol == "", "symbol not initialized"
+        assert self.totalSupply == 0, "total supply not initialized"
+        payment_amount = require_payment(Txn.sender)
+        assert payment_amount >= 28500, "payment amount accurate"
+        self.owner = Global.creator_address
+        self.name = String.from_bytes(name.bytes)
+        self.symbol = String.from_bytes(symbol.bytes)
+        self.decimals = decimals.native
+        self.totalSupply = totalSupply.native
+        self.balances[receiver.native] = totalSupply.native
+        arc4.emit(
+            arc200_Transfer(
+                arc4.Address(Global.zero_address),
+                receiver,
+                totalSupply,
+            )
+        )

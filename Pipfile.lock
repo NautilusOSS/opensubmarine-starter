@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7383d5bce9e93851a9e54bbb200cb1c3d89df1046511df5d45d9c8e604e6cb3e"
+            "sha256": "568b46c892d80e632d7a5cec4c05357d306be6b3d7cf292e872b94e039212698"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1044,13 +1044,9 @@
             "version": "==2.2.2"
         },
         "opensubmarine": {
-            "hashes": [
-                "sha256:85309ffe4dd16dce339a66dd533ae1224b1c7d75be378b02bfde6cab2365d11d",
-                "sha256:c725a365c7eff979621968cfe63b90e8adb6abf4c659717b4e5a5241cee79a5b"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==0.1.12"
+            "editable": true,
+            "file": "../opensubmarine-contracts",
+            "markers": "python_version >= '3.7'"
         },
         "packaging": {
             "hashes": [
